@@ -1,0 +1,373 @@
+```html
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biyolog Emre | Bilimsel Mantar Yetiştiriciliği</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-pattern {
+            background-color: #2f3e27;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233a4c30' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        /* Oyun ekranı için piksel art görünümü */
+        #gameCanvas {
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 flex flex-col min-h-screen">
+
+    <!-- Navigasyon -->
+    <nav class="bg-green-900 text-stone-100 sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="text-xl font-bold tracking-wider flex items-center gap-2">
+                    <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 3.53 1.84 6.64 4.67 8.44C7.03 20.21 7.5 20 8 20h8c.5 0 .97.21 1.33.44C20.16 18.64 22 15.53 22 12 22 6.48 17.52 2 12 2zm0 2c4.41 0 8 3.59 8 8 0 1.62-.48 3.12-1.3 4.36-.61-.31-1.32-.51-2.09-.59C16.32 14.54 15.22 13 12 13s-4.32 1.54-4.61 2.77c-.77.08-1.48.28-2.09.59C4.48 15.12 4 13.62 4 12 4 7.59 7.59 4 12 4z"/></svg>
+                    Biyolog Emre
+                </a>
+                
+                <!-- Masaüstü Menü -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#hero" class="hover:text-green-300 transition">Ana Sayfa</a>
+                    <a href="#hakkimda" class="hover:text-green-300 transition">Hakkımda</a>
+                    <a href="#mantarlar" class="hover:text-green-300 transition">Mantarlarımız</a>
+                    <a href="#oyun" class="hover:text-green-300 transition bg-green-700 px-3 py-1 rounded-full text-sm">Mini Oyun</a>
+                </div>
+
+                <!-- Mobil Menü Butonu -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobil Menü -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2 flex-col">
+                <a href="#hero" class="block px-2 py-1 hover:bg-green-800 rounded">Ana Sayfa</a>
+                <a href="#hakkimda" class="block px-2 py-1 hover:bg-green-800 rounded">Hakkımda</a>
+                <a href="#mantarlar" class="block px-2 py-1 hover:bg-green-800 rounded">Mantarlarımız</a>
+                <a href="#oyun" class="block px-2 py-1 bg-green-700 rounded text-center mt-2 text-sm font-semibold">Mini Oyun</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Kahraman (Hero) Bölümü -->
+    <header id="hero" class="hero-pattern text-white py-24 md:py-32 px-4 relative overflow-hidden text-center">
+        <div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+            <span class="bg-green-700/80 text-green-100 text-xs font-bold uppercase tracking-widest py-1 px-3 rounded-full mb-4 inline-block">Bilimsel Temelli Üretim</span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Doğanın Döngüsü,<br>Bilimin Işığında.</h1>
+            <p class="text-lg md:text-xl text-green-100 mb-8 max-w-2xl">
+                Laboratuvar disiplini ve sürdürülebilir tarım ilkeleriyle doğadan ilham alan, yüksek kaliteli ve bilimsel mantar yetiştiriciliği.
+            </p>
+            <a href="#hakkimda" class="bg-stone-100 text-green-900 font-semibold px-8 py-3 rounded-lg hover:bg-stone-300 transition shadow-lg inline-flex items-center gap-2">
+                Daha Fazla Bilgi Edin
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hakkımda Bölümü -->
+    <section id="hakkimda" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden flex flex-col md:flex-row items-center">
+            <div class="md:w-2/5 p-8 bg-green-50 flex justify-center h-full">
+                <!-- Avatar / İllüstrasyon -->
+                <div class="w-48 h-48 bg-green-200 rounded-full flex items-center justify-center border-4 border-white shadow-inner relative">
+                    <svg class="w-24 h-24 text-green-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="absolute bottom-2 right-2 bg-green-600 w-10 h-10 rounded-full flex items-center justify-center border-2 border-white shadow-md" title="Biyoloji">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-3/5 p-8 lg:p-12">
+                <h2 class="text-3xl font-bold text-stone-800 mb-6 relative inline-block">
+                    Hakkımda
+                    <span class="absolute -bottom-2 left-0 w-1/2 h-1 bg-green-600 rounded"></span>
+                </h2>
+                <p class="text-stone-600 leading-relaxed text-lg">
+                    Biyolog Emre. Atatürk Üniversitesi Biyoloji Bölümü'nde lisans eğitimine devam etmekte olan, mikoloji ve modern tarım teknolojileri üzerine uzmanlaşan bir araştırmacı. Genetik, laboratuvar disiplini ve sürdürülebilir tarım ilkelerini birleştirerek yüksek standartlarda, bilimsel temellere dayalı mantar yetiştiriciliği yapmaktadır.
+                </p>
+                <div class="mt-8 flex gap-4">
+                    <span class="px-4 py-2 bg-green-100 text-green-800 rounded-lg text-sm font-medium">🔬 Mikoloji</span>
+                    <span class="px-4 py-2 bg-green-100 text-green-800 rounded-lg text-sm font-medium">🌱 Modern Tarım</span>
+                    <span class="px-4 py-2 bg-green-100 text-green-800 rounded-lg text-sm font-medium">🧬 Genetik</span>
+                </div>
+                <div class="mt-8">
+                    <a href="mailto:iletisim@biyologemre.com" class="inline-flex items-center gap-2 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition shadow-md font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        Bana Ulaşın: iletisim@biyologemre.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mantarlarımız Bölümü -->
+    <section id="mantarlar" class="py-20 bg-stone-200/50 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">Mantarlarımız</h2>
+                <p class="text-stone-500 max-w-2xl mx-auto">Laboratuvar ortamında geliştirilen, yüksek kalite ve doğal besin değerlerine sahip ürünlerimiz. Saf miseller kullanılarak ideal koşullarda yetiştirilmektedir.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Mantar Kartı 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 hover:shadow-lg transition group">
+                    <div class="h-48 bg-stone-300 relative overflow-hidden flex items-center justify-center bg-[url('https://placehold.co/600x400/3e4537/ffffff?text=Istiridye+Mantari')] bg-cover bg-center">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-green-600 font-bold tracking-wide uppercase mb-1">Pleurotus ostreatus</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">İstiridye Mantarı</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Yüksek protein ve lif kaynağı olan bu tür, doğal ağaç ortamını simüle eden steril substratlar üzerinde, tamamen organik prensiplerle yetiştirilmektedir. Etli yapısı ve eşsiz lezzetiyle öne çıkar.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mantar Kartı 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 hover:shadow-lg transition group">
+                    <div class="h-48 bg-stone-300 relative overflow-hidden flex items-center justify-center bg-[url('https://placehold.co/600x400/5c5448/ffffff?text=Kultur+Mantari')] bg-cover bg-center">
+                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-green-600 font-bold tracking-wide uppercase mb-1">Agaricus bisporus</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">Kültür Mantarı</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Dünyanın en yaygın tüketilen mantar türlerinden biri. Kontrollü iklim odalarında, kompost verimliliği maksimum seviyede tutularak her daim taze ve lezzetli olarak hasat edilir.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mantar Kartı 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 hover:shadow-lg transition group">
+                    <div class="h-48 bg-stone-300 relative overflow-hidden flex items-center justify-center bg-[url('https://placehold.co/600x400/69452c/ffffff?text=Sitake+Mantari')] bg-cover bg-center">
+                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-green-600 font-bold tracking-wide uppercase mb-1">Lentinula edodes</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">Şitake Mantarı</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Uzakdoğu'nun tıbbi ve aromatik harikası. Özel olarak formüle edilmiş meşe talaşı bazlı substratlarda inkübe edilerek yetiştirilir. Derin ve zengin "umami" lezzeti barındırır.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Oyun Bölümü -->
+    <section id="oyun" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-stone-900 rounded-3xl p-6 md:p-10 shadow-2xl relative border-4 border-stone-800">
+                
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-green-400 font-mono mb-2">🍄 Mantar Avcısı</h2>
+                    <p class="text-stone-400 text-sm">Laboratuvardan kaçan mantarları topla! Hareket etmek için ok tuşlarını (veya W, A, S, D) kullan.</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-8">
+                    <!-- Oyun Alanı -->
+                    <div class="relative bg-black p-2 rounded-xl shadow-inner border-2 border-stone-700 inline-block">
+                        <!-- Skor -->
+                        <div class="absolute top-4 left-4 z-10 font-mono text-white text-lg bg-black/50 px-2 rounded">
+                            Skor: <span id="scoreValue" class="text-green-400 font-bold">0</span>
+                        </div>
+                        <canvas id="gameCanvas" width="300" height="300" class="bg-[#8b9d77] rounded"></canvas>
+                    </div>
+
+                    <!-- Mobil Kontroller (Dokunmatik Cihazlar İçin) -->
+                    <div class="lg:hidden grid grid-cols-3 gap-2 mt-4 max-w-[200px] mx-auto">
+                        <div></div>
+                        <button class="game-btn bg-stone-700 text-white rounded p-4 active:bg-green-600" id="btnUp">↑</button>
+                        <div></div>
+                        <button class="game-btn bg-stone-700 text-white rounded p-4 active:bg-green-600" id="btnLeft">←</button>
+                        <button class="game-btn bg-stone-700 text-white rounded p-4 active:bg-green-600" id="btnDown">↓</button>
+                        <button class="game-btn bg-stone-700 text-white rounded p-4 active:bg-green-600" id="btnRight">→</button>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button id="resetGameBtn" class="bg-stone-700 hover:bg-stone-600 text-stone-300 px-6 py-2 rounded-full font-mono transition text-sm">Yeniden Başlat</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-950 text-green-200/60 py-8 mt-auto text-center px-4">
+        <div class="mb-6">
+            <a href="mailto:iletisim@biyologemre.com" class="text-green-400 hover:text-green-200 transition inline-flex items-center justify-center gap-2 text-lg font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                iletisim@biyologemre.com
+            </a>
+        </div>
+        <p class="mb-2">© 2026 Biyolog Emre. Tüm hakları saklıdır.</p>
+        <p class="text-sm">Bilimsel temellerle hazırlanmış sürdürülebilir bir sistem.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- Mobil Menü Toggle ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+        
+        // --- Mantar Avcısı (Minecraft/Retro Tarzı Mini Oyun) ---
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('scoreValue');
+        const resetBtn = document.getElementById('resetGameBtn');
+
+        // Ayarlar
+        const gridSize = 20;
+        const tileCount = canvas.width / gridSize; // 300 / 20 = 15 kare
+        
+        // Oyun Durumu
+        let player = { x: 7, y: 7 };
+        let mushroom = { x: 3, y: 3 };
+        let score = 0;
+        
+        // Yılan oyunu mantığına benzer ama sürekli akmayan, grid tabanlı bir oyun.
+        
+        function drawGame() {
+            // Arka plan (Toprak / Çim dokusu efekti - Checkerboard)
+            for (let i = 0; i < tileCount; i++) {
+                for (let j = 0; j < tileCount; j++) {
+                    if ((i + j) % 2 === 0) {
+                        ctx.fillStyle = '#7a8c66';
+                    } else {
+                        ctx.fillStyle = '#8b9d77';
+                    }
+                    ctx.fillRect(i * gridSize, j * gridSize, gridSize, gridSize);
+                }
+            }
+
+            // Mantarı Çiz (Piksel art tarzı)
+            const mx = mushroom.x * gridSize;
+            const my = mushroom.y * gridSize;
+            
+            // Sap
+            ctx.fillStyle = '#f5e6d3';
+            ctx.fillRect(mx + 6, my + 10, 8, 10);
+            
+            // Kırmızı Başlık
+            ctx.fillStyle = '#d93829';
+            ctx.fillRect(mx + 2, my + 2, 16, 10);
+            
+            // Beyaz Noktalar
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(mx + 4, my + 4, 3, 3);
+            ctx.fillRect(mx + 12, my + 5, 3, 3);
+            ctx.fillRect(mx + 8, my + 8, 3, 3);
+
+            // Karakteri (Biyolog/Oyuncu) Çiz
+            const px = player.x * gridSize;
+            const py = player.y * gridSize;
+            
+            // Oyuncu gövdesi (Yeşil piksel)
+            ctx.fillStyle = '#1e381b';
+            ctx.fillRect(px, py, gridSize, gridSize);
+            // Gözler (basit ifade)
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(px + 4, py + 4, 4, 4);
+            ctx.fillRect(px + 12, py + 4, 4, 4);
+            // Gözbebeği
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(px + 6, py + 6, 2, 2);
+            ctx.fillRect(px + 12, py + 6, 2, 2);
+        }
+
+        function placeMushroom() {
+            mushroom.x = Math.floor(Math.random() * tileCount);
+            mushroom.y = Math.floor(Math.random() * tileCount);
+            
+            // Eğer mantar oyuncunun üstüne denk geldiyse tekrar yerleştir
+            if (mushroom.x === player.x && mushroom.y === player.y) {
+                placeMushroom();
+            }
+        }
+
+        function checkCollision() {
+            if (player.x === mushroom.x && player.y === mushroom.y) {
+                score += 10;
+                scoreEl.innerText = score;
+                placeMushroom();
+            }
+        }
+
+        function movePlayer(dx, dy) {
+            let newX = player.x + dx;
+            let newY = player.y + dy;
+
+            // Duvarlardan geçmesin
+            if (newX >= 0 && newX < tileCount && newY >= 0 && newY < tileCount) {
+                player.x = newX;
+                player.y = newY;
+                checkCollision();
+                drawGame();
+            }
+        }
+
+        // Klavye Kontrolleri
+        window.addEventListener('keydown', (e) => {
+            // Sadece oyun alanındayken veya tuşlara basıldığında sayfanın kaymasını engelle
+            if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight", "Space"].indexOf(e.code) > -1) {
+                e.preventDefault();
+            }
+
+            switch(e.key) {
+                case 'ArrowUp':
+                case 'w':
+                case 'W':
+                    movePlayer(0, -1);
+                    break;
+                case 'ArrowDown':
+                case 's':
+                case 'S':
+                    movePlayer(0, 1);
+                    break;
+                case 'ArrowLeft':
+                case 'a':
+                case 'A':
+                    movePlayer(-1, 0);
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                case 'D':
+                    movePlayer(1, 0);
+                    break;
+            }
+        }, { passive: false });
+
+        // Mobil Buton Kontrolleri
+        document.getElementById('btnUp').addEventListener('click', (e) => { e.preventDefault(); movePlayer(0, -1); });
+        document.getElementById('btnDown').addEventListener('click', (e) => { e.preventDefault(); movePlayer(0, 1); });
+        document.getElementById('btnLeft').addEventListener('click', (e) => { e.preventDefault(); movePlayer(-1, 0); });
+        document.getElementById('btnRight').addEventListener('click', (e) => { e.preventDefault(); movePlayer(1, 0); });
+
+        // Oyunu Sıfırla
+        resetBtn.addEventListener('click', () => {
+            score = 0;
+            scoreEl.innerText = score;
+            player = { x: 7, y: 7 };
+            placeMushroom();
+            drawGame();
+        });
+
+        // Başlangıç
+        placeMushroom();
+        drawGame();
+
+    </script>
+</body>
+</html>
+```
